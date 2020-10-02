@@ -13,6 +13,7 @@ export function getSortedPostsData() {
     const fullPath = path.join(postsDirectory, fileName)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
 
+    // @ts-ignore
     const matterResult = JSON.parse(JSON.stringify(matter(fileContents)))
 
     return {
@@ -61,7 +62,8 @@ export function getPostData(id) {
   const fileContents = fs.readFileSync(fullPath, 'utf8')
 
   // Use gray-matter to parse the post metadata section
-  const matterResult = matter(fileContents)
+  // @ts-ignore
+  const matterResult = matter<string>(fileContents)
 
   // Combine the data with the id
   return {
